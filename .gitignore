@@ -172,4 +172,4 @@ tags
 
 
 # End of https://www.gitignore.io/api/c,vim,macos,linux,visualstudiocode,autotools
-func_test*
+func_test*.out

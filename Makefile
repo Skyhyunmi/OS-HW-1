@@ -1,14 +1,14 @@
 LIB=./lib/mylist.c
 
-TEST1_EXE=func_test1
+TEST1_EXE=func_test1.out
 TEST1_SRC=./tests/func_test1.c
-TEST2_EXE=func_test2
+TEST2_EXE=func_test2.out
 TEST2_SRC=./tests/func_test2.c
-TEST3_EXE=func_test3
+TEST3_EXE=func_test3.out
 TEST3_SRC=./tests/func_test3.c
-TEST4_EXE=func_test4
+TEST4_EXE=func_test4.out
 TEST4_SRC=./tests/func_test4.c
-TEST5_EXE=func_test5
+TEST5_EXE=func_test5.out
 TEST5_SRC=./tests/func_test5.c
 
 all:
