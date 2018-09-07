@@ -9,7 +9,7 @@ void mylist_init(struct mylist* l)
 
 void mylist_destroy(struct mylist* l)
 {
-  for(struct mylist_node* pointer=l->head;pointer!=NULL;pointer=pointer->next){
+  for(struct mylist_node* pointer=l->head;pointer!=NULL;pointer=l->head){
     mylist_remove(l,pointer);
   }
 }
@@ -43,6 +43,7 @@ void mylist_remove(
         }
         else if(pointer->next==target) {
             pointer->next=pointer->next->next;
+            free(pointer);
             return;
         }
     }
