@@ -2,11 +2,12 @@
 #define MYLIST_H_
 
 struct mylist_node {
-  // TODO: Fill it
+  int data;
+  struct mylist_node* next;
 };
 
 struct mylist {
-  // TODO: Fill it
+  struct mylist_node* head;
 };
 
 void mylist_init(struct mylist* l);
