@@ -15,13 +15,13 @@ void mylist_destroy(struct mylist* l)
 }
 
 void mylist_insert(
-    struct mylist* l,
-    struct mylist_node* before, int data)
+    struct mylist* l,struct mylist_node* before, int data)
 {
-  struct mylist_node* temp;
+  struct mylist_node* temp = (struct mylist_node*)malloc(sizeof(struct mylist_node));
+  
   if(before==NULL){
     temp->data=data;
-    temp->next=NULL;
+    temp->next=l->head;
     l->head=temp;
   }
   else{
@@ -32,19 +32,28 @@ void mylist_insert(
 }
 
 void mylist_remove(
-    struct mylist* l,
-    struct mylist_node* target)
+    struct mylist* l, struct mylist_node* target)
 {
-    struct mylist_node *find = mylist_find(l,target->data);
-    struct mylist_node *temp=find;
-    temp->next=temp->next->next;
-
+  for(struct mylist_node* pointer=l->head;
+    pointer!=NULL;
+    pointer=pointer->next){
+        if(target==l->head) {
+            l->head=target->next;
+            return;
+        }
+        else if(pointer->next==target) {
+            pointer->next=pointer->next->next;
+            return;
+        }
+    }
 }
 
 struct mylist_node* mylist_find(struct mylist* l, int target)
 {
-  for(struct mylist_node *pointer=l->head;pointer!=NULL;pointer=pointer->next){
-      if(pointer->data==target) return pointer;
+  for(struct mylist_node *pointer=l->head;
+      pointer!=NULL;
+      pointer=pointer->next){
+        if(pointer->data==target) return pointer;
   }
 
   return NULL; // If not found
@@ -52,17 +61,18 @@ struct mylist_node* mylist_find(struct mylist* l, int target)
 
 struct mylist_node* mylist_get_head(struct mylist* l)
 {
-  return l->head;
-
+  
+  if(l->head) {
+      return l->head;
+  }
   return NULL;
 }
 
 void mylist_print(const struct mylist* l)
 {
-
   for (struct mylist_node* pointer = l->head;
       pointer != NULL;
       pointer = pointer->next) {
-    printf("%d\n", pointer->data);
+        printf("%d\n", pointer->data);
   }
 }
