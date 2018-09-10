@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <stdio.h>
+//#include <stdio.h>
 #include "mylist.h"
 
 void mylist_init(struct mylist* l)
@@ -12,6 +12,7 @@ void mylist_destroy(struct mylist* l)
   for(struct mylist_node* pointer=l->head;pointer!=NULL;pointer=l->head){
     mylist_remove(l,pointer);
   }
+  
 }
 
 void mylist_insert(
@@ -34,18 +35,19 @@ void mylist_insert(
 void mylist_remove(
     struct mylist* l, struct mylist_node* target)
 {
+  if(target==l->head) {
+    l->head=target->next;
+    free(target);
+    return;
+  }
   for(struct mylist_node* pointer=l->head;
     pointer!=NULL;
     pointer=pointer->next){
-        if(target==l->head) {
-            l->head=target->next;
-            return;
-        }
-        else if(pointer->next==target) {
-            pointer->next=pointer->next->next;
-            free(pointer);
-            return;
-        }
+      if(pointer->next==target) {
+          pointer->next=target->next;
+          free(target);
+          return;
+      }
     }
 }
 
@@ -58,6 +60,7 @@ struct mylist_node* mylist_find(struct mylist* l, int target)
   }
 
   return NULL; // If not found
+  
 }
 
 struct mylist_node* mylist_get_head(struct mylist* l)

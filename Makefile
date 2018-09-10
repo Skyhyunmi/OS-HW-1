@@ -25,6 +25,7 @@ all:
 	gcc -std=c99 -o $(TEST5_EXE) $(TEST5_SRC) $(LIB) -I./include/
 
 test:
+	touch scoring_result
 	rm scoring_result
 	./$(TEST1_EXE) > $(TEST1).youranswer
 	diff $(TEST1).youranswer $(TEST1).answer >> scoring_result
