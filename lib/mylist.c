@@ -1,5 +1,5 @@
 #include <stdlib.h>
-//#include <stdio.h>
+
 #include "mylist.h"
 
 void mylist_init(struct mylist* l)
@@ -9,14 +9,15 @@ void mylist_init(struct mylist* l)
 
 void mylist_destroy(struct mylist* l)
 {
-  for(struct mylist_node* pointer=l->head;pointer!=NULL;pointer=l->head){
+  for(struct mylist_node* pointer=l->head;
+  pointer!=NULL;
+  pointer=l->head){
     mylist_remove(l,pointer);
   }
-  
 }
 
 void mylist_insert(
-    struct mylist* l,struct mylist_node* before, int data)
+  struct mylist* l,struct mylist_node* before, int data)
 {
   struct mylist_node* temp = (struct mylist_node*)malloc(sizeof(struct mylist_node));
   
@@ -41,33 +42,30 @@ void mylist_remove(
     return;
   }
   for(struct mylist_node* pointer=l->head;
-    pointer!=NULL;
-    pointer=pointer->next){
-      if(pointer->next==target) {
-          pointer->next=target->next;
-          free(target);
-          return;
-      }
+  pointer!=NULL;
+  pointer=pointer->next){
+    if(pointer->next==target) {
+      pointer->next=target->next;
+      free(target);
+      return;
     }
+  }
 }
 
 struct mylist_node* mylist_find(struct mylist* l, int target)
 {
-  for(struct mylist_node *pointer=l->head;
-      pointer!=NULL;
-      pointer=pointer->next){
-        if(pointer->data==target) return pointer;
+  for(struct mylist_node* pointer=l->head;
+  pointer!=NULL;
+  pointer=pointer->next){
+    if(pointer->data==target) return pointer;
   }
-
   return NULL; // If not found
-  
 }
 
 struct mylist_node* mylist_get_head(struct mylist* l)
 {
-  
   if(l->head) {
-      return l->head;
+    return l->head;
   }
   return NULL;
 }
@@ -75,8 +73,8 @@ struct mylist_node* mylist_get_head(struct mylist* l)
 void mylist_print(const struct mylist* l)
 {
   for (struct mylist_node* pointer = l->head;
-      pointer != NULL;
-      pointer = pointer->next) {
-        printf("%d\n", pointer->data);
+  pointer != NULL;
+  pointer = pointer->next) {
+    printf("%d\n", pointer->data);
   }
 }
