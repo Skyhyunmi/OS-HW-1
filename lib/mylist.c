@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include <stdio.h>
 #include "mylist.h"
 
 void mylist_init(struct mylist* l)
