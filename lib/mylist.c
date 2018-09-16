@@ -20,7 +20,6 @@ void mylist_insert(
   struct mylist* l,struct mylist_node* before, int data)
 {
   struct mylist_node* temp = (struct mylist_node*)malloc(sizeof(struct mylist_node));
-  
   if(before==NULL){
     temp->data=data;
     temp->next=l->head;
