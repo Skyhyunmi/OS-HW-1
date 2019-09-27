@@ -1,5 +1,6 @@
 
 # Created by https://www.gitignore.io/api/c,vim,macos,linux,visualstudiocode,autotools
+*.youranswer
 
 ### Autotools ###
 # http://www.gnu.org/software/automake
@@ -29,6 +30,7 @@ autom4te.cache
 /install-sh
 /missing
 /stamp-h1
+/docs/*
 
 # https://www.gnu.org/software/libtool/
 

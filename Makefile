@@ -25,15 +25,18 @@ all:
 	gcc -std=c99 -o $(TEST5_EXE) $(TEST5_SRC) $(LIB) -I./include/
 
 test:
-	touch scoring_result
-	rm scoring_result
+	valgrind --leak-check=full --track-origins=yes --log-file=memcheck1.txt -v --error-limit=no ./$(TEST1_EXE)
 	./$(TEST1_EXE) > $(TEST1).youranswer
 	diff $(TEST1).youranswer $(TEST1).answer >> scoring_result
+	valgrind --leak-check=full --log-file=memcheck2.txt -v --error-limit=no ./$(TEST2_EXE)
 	./$(TEST2_EXE) > $(TEST2).youranswer
 	diff $(TEST2).youranswer $(TEST2).answer >> scoring_result
+	valgrind --leak-check=full --log-file=memcheck3.txt -v --error-limit=no ./$(TEST3_EXE)
 	./$(TEST3_EXE) > $(TEST3).youranswer
 	diff $(TEST3).youranswer $(TEST3).answer >> scoring_result
+	valgrind --leak-check=full --log-file=memcheck4.txt -v --error-limit=no ./$(TEST4_EXE)
 	./$(TEST4_EXE) > $(TEST4).youranswer
 	diff $(TEST4).youranswer $(TEST4).answer >> scoring_result
+	valgrind --leak-check=full --log-file=memcheck5.txt -v --error-limit=no ./$(TEST5_EXE)
 	./$(TEST5_EXE) > $(TEST5).youranswer
 	diff $(TEST5).youranswer $(TEST5).answer >> scoring_result
